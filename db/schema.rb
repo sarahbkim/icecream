@@ -11,7 +11,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150531223120) do
+ActiveRecord::Schema.define(version: 20150531230939) do
+
+  create_table "check_ins", force: :cascade do |t|
+    t.string   "user_id"
+    t.string   "shop_id"
+    t.string   "user_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "favorite_shops", force: :cascade do |t|
+    t.string   "store_name"
+    t.string   "city"
+    t.integer  "rating"
+    t.string   "shop_id"
+    t.string   "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "icecream_shops", force: :cascade do |t|
+    t.string   "name"
+    t.string   "street_address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zipcode"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
