@@ -5,7 +5,7 @@ class UserTest < ActiveSupport::TestCase
   #   assert true
   # end
   def setup
-    @user = User.new(name: "Example User", email: "user@example.com")
+    @user = User.new(name: "Example User", email: "user@example.com", password: "foobar", password_confirmation: "foobar")
   end
 
   test "should be valid" do
@@ -18,7 +18,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "name should not be too long" do
-    @user.name = "a" * 50
+    @user.name = "a" * 500
     assert_not @user.valid?
   end
 
@@ -28,7 +28,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "email should not be too long" do
-    @user.email = "a" * 256 + "@example.com"
+    @user.email = "a" * 500 + "@example.com"
     assert_not @user.valid?
   end
 
@@ -40,5 +40,27 @@ class UserTest < ActiveSupport::TestCase
       assert @user.valid?, "#{address.inspect} should be valid"
     end
 
+    invalid_addresses = %w[user#.com, user@network.comma, user]
+    invalid_addresses.each do |address|
+      @user.email = address
+      assert_not @user.valid?, "#{address.inspect} should be invalid"
+    end
+  end
+
+  test "email addresses should be unique" do
+    duplicate_user = @user.dup
+    duplicate_user.email = @user.email.upcase
+    @user.save
+    assert_not duplicate_user.valid?
+  end
+
+  test "password should be present (nonblack)" do
+    @user.password = @user.password_confirmation = " " * 6
+    assert_not @user.valid?
+  end
+
+  test "password should have a minimum length" do
+    @user.password = @user.password_confirmation = "a" * 5
+    assert_not @user.valid?
   end
 end
