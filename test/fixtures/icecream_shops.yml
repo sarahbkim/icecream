@@ -4,8 +4,15 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+icis:
+  name: 'Icis'
+  street_address: "3555 College Ave"
+  city: 'Berkeley'
+  state: 'CA'
+  zipcode: 94612
+sweetHearts:
+  name: 'SweetHeart Cafe'
+  street_address: '100 W Grand Ave'
+  city: 'Oakland'
+  state: 'CA'
+  zipcode: 94012
