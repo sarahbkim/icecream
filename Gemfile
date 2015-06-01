@@ -30,6 +30,12 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap-sass', '3.2.0.2'
 gem 'autoprefixer-rails'
 
+# user interactors
+gem 'interactor', '~> 3.0'
+
+# Use Factual API to get icecream data
+gem 'factual-api'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

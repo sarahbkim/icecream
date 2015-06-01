@@ -76,4 +76,8 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # API KEYS
+  FACTUAL_API_KEY = "vgSAvLtc9yIAARSt9Q3Adzw2Y6LS2fcAqlXyd5tm"
+  FACTUAL_API_TOKEN = "0TTwiseip8S3z2JhmGtgQYv1XPJrhZWv4DYORMKf"
 end

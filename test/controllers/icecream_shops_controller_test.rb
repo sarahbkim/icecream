@@ -11,14 +11,19 @@ class IcecreamShopsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create a shop with valid input" do
-    assert_difference('IcecreamShop.count') do
-      post :create, :store => @valid_params
-    end
+  test "should show a list of results from Factual data" do
+    get :index
+    assert_response :success
+  end
 
-    assert_no_difference('IcecreamShop.count') do
-      post :create, :store => @invalid_params
-    end
-  end  
+  # test "should create a shop with valid input" do
+  #   assert_difference('IcecreamShop.count') do
+  #     post :create, :store => @valid_params
+  #   end
+
+  #   assert_no_difference('IcecreamShop.count') do
+  #     post :create, :store => @invalid_params
+  #   end
+  # end
 
 end

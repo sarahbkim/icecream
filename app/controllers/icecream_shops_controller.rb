@@ -1,6 +1,12 @@
 class IcecreamShopsController < ApplicationController
+  #before_action :authenticate
+
   def index
     @stores = IcecreamShop.all
+    result = GetFactualData.call
+    if result.success?
+      @factual_stores = result.results_arr
+    end
   end
 
   def new
