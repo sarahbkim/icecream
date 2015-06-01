@@ -10,6 +10,10 @@ Rails.application.routes.draw do
   resources :users
   match '/signup', to: 'users#new', via: [:get, :post]
 
+  get 'login' => 'sessions#new'
+  post 'login' => 'sessions#create'
+  delete 'logout' => 'sessions#destroy'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
