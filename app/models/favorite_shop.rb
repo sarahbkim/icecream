@@ -1,4 +1,7 @@
 class FavoriteShop < ActiveRecord::Base
+  belongs_to :user
+  belongs_to :icecream_shop
+    
   validates :store_name, presence: true
   validates :city, presence: true
   validates :rating, presence: true
