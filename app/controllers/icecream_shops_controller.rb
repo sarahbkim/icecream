@@ -18,6 +18,6 @@ class IcecreamShopsController < ApplicationController
 
   private
     def shop_params
-      params.require(:icecream_shop).permit(:name, :street_address, :city, :state, :zipcode)
+      params.require(:store).permit(:name, :street_address, :city, :state, :zipcode)
     end
 end
