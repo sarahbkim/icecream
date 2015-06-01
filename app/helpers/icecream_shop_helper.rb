@@ -1,0 +1,2 @@
+module IcecreamShopHelper
+end

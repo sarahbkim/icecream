@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
 
 
+  get 'icecream_shop/new'
+
+  get 'icecream_shop/show'
+
+  get 'icecream_shop/create'
+
+  get 'icecream_shop/ddestroy'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -13,6 +21,8 @@ Rails.application.routes.draw do
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
+
+  resources :icecream_shops
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
