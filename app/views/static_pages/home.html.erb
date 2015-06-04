@@ -1,11 +1,52 @@
-<div class="center jumbotron">
-  <h1>Welcome to the Ice Cream App</h1>
+<% if logged_in? %>
 
-  <h2>
-    This is the home page for getting all the ice cream you want!
-  </h2>
+  <div class="row">
+    <h2>Search for an icecream store</h2>
+    <form>
+      <div class="form-group">
+        <label for="storeName">Store Name</label>
+        <input type="text" name="storename" class="form-control" placeholder="Input store name">
+      </div>
+      <div class="form-group">
+        <label for="location">Location</label>
+        <input type="text" name="location" class="form-control" placeholder="Input city, zipcode, or other location data">
+        <button type="submit" class="btn btn-default">Submit</button>
+      </div>
+    </form>
+  </div>
 
-  <%= link_to "Sign up now!", '#', class: "btn btn-lg btn-primary" %>
-</div>
-<!-- <%= link_to image_tag("rails.png", alt: "Rails logo"),
-            'http://rubyonrails.org/' %> -->
+  <div class="row">
+    <h2>Your stats</h2>
+  </div>
+  <div class="row">
+    <h3>How much ice cream you ate...</h3>
+    <div>
+      <img src="#">
+      <span>Show some charts here -- user DC.js</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h3>Your favorite stores</h3>
+      <div>
+        <ul>
+          <li>List stores here - use Angular!</li>
+        </ul>    
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h3>Your Highest ratest stores / Other high ratest stores</h3>
+    </div>
+  </div>
+
+<% else %>
+  <div class="center jumbotron">
+    <h1>Welcome to the Ice Cream App</h1>
+
+    <h2>
+      This is the home page for getting all the ice cream you want!
+    </h2>
+
+    <%= link_to "Sign up now!", '#', class: "btn btn-lg btn-primary" %>
+  </div>
+<% end %>

@@ -36,6 +36,9 @@ gem 'interactor', '~> 3.0'
 # Use Factual API to get icecream data
 gem 'factual-api'
 
+# use geocoder for visitor lat long
+gem 'geocoder'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
