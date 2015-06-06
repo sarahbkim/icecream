@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="center jumbotron">
+    <h1>Search for all the ice cream you want!</h1>
+  </div>
+  <div class="row">
+    <h2>Search for an icecream store</h2>
+      <%= form_tag(icecream_shops_path, method: "get", class: "form-group") do %>
+        <%= label_tag(:store_name, "Search by store name: ") %>
+        <%= text_field_tag :store_name, params[:store_name], class: "form-control", placeholder: "Your favorite ice cream shop" %>
+        <%= label_tag(:location, "Search by location: ") %>
+        <%= text_field_tag :location, params[:location], class: "form-control", placeholder: "City or Zipcode" %>
+        <%= submit_tag("Search", class: "btn btn-default") %>
+      <% end %>
+  </div>
+</div>
+
+<% if @search_results!=nil %>
+  <div class="row" id="results">
+    <%= @search_results.each do |store| %>
+      <ul>
+        <li><%= store.name %></li>
+        <li><%= store.street_address %></li>
+        <li><%= store.city %></li>
+        <li><%= store.zipcode %></li>
+      </ul>
+    <% end %>
+
+  </div>
+<% end %> 

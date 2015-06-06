@@ -6,16 +6,19 @@ class IcecreamShopsControllerTest < ActionController::TestCase
     @invalid_params = {name: 'test_name', street_address: 'test_street_address', city: 12, state: 'test_state', zipcode: 'xxx'}
   end
 
-  test "should get new" do
-    get :new
-    assert_response :success
-  end
-
   test "should show a list of results from Factual data" do
     get :index
     assert_response :success
   end
 
+  test "should search factual API with valid args" do 
+    get :search, store_name: "", location: "Berkeley"
+    assert_response :success
+
+    get :search, store_name: "Smitten", location: "Oakland"
+    assert_response :success
+  end
+  
   # test "should create a shop with valid input" do
   #   assert_difference('IcecreamShop.count') do
   #     post :create, :store => @valid_params
