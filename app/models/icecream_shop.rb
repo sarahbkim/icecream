@@ -4,6 +4,7 @@ class IcecreamShop < ActiveRecord::Base
 
   VALID_ZIPCODE_REGEX = /^\d{5}(-\d{4})?$/
   validates :id, uniqueness: true
+  validates :factual_id, uniqueness: true, presence: true
   validates :name, presence: true
   validates :street_address, presence: true
   validates :city, presence: true
