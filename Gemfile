@@ -39,6 +39,10 @@ gem 'factual-api'
 # use geocoder for visitor lat long
 gem 'geocoder'
 
+# to add angular
+gem 'bower-rails'
+gem 'active_model_serializers'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -47,6 +51,13 @@ gem 'geocoder'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'faker'
+  gem 'factory_girl_rails'
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'database_cleaner'
+  gem 'compass'
   gem 'byebug'
 
   # Access an IRB console on exception pages or by using <%= console %> in views

@@ -15,14 +15,20 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'static_pages#home'
   get 'about' => 'static_pages#about'
-  resources :users
-  match '/signup', to: 'users#new', via: [:get, :post]
 
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
+  
   get 'search' => 'icecream_shops#search'
-  resources :icecream_shops
+
+  resources :users
+  match '/signup', to: 'users#new', via: [:get, :post]
+
+  namespace :api, defaults: {format: :json} do
+    resources :icecream_shops, only: [:index, :create, :update, :destroy]
+  end
+  
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
