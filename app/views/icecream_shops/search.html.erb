@@ -4,7 +4,7 @@
   </div>
   <div class="row">
     <h2>Search for an icecream store</h2>
-      <%= form_tag(icecream_shops_path, method: "get", class: "form-group") do %>
+      <%= form_tag(api_icecream_shops_path, method: "get", class: "form-group") do %>
         <%= label_tag(:store_name, "Search by store name: ") %>
         <%= text_field_tag :store_name, params[:store_name], class: "form-control", placeholder: "Your favorite ice cream shop" %>
         <%= label_tag(:location, "Search by location: ") %>

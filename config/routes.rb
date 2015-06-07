@@ -1,28 +1,27 @@
 Rails.application.routes.draw do
-
-
-  get 'icecream_shop/new'
-
-  get 'icecream_shop/show'
-
-  get 'icecream_shop/create'
-
-  get 'icecream_shop/ddestroy'
+  mount_devise_token_auth_for 'User', at: '/auth'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'static_pages#home'
+  root to: 'application#angular'
   get 'about' => 'static_pages#about'
-  resources :users
-  match '/signup', to: 'users#new', via: [:get, :post]
 
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
+  
   get 'search' => 'icecream_shops#search'
-  resources :icecream_shops
+
+  resources :users
+  match '/signup', to: 'users#new', via: [:get, :post]
+
+  namespace :api, defaults: {format: :json} do
+    resources :icecream_shops, only: [:index, :create, :update, :destroy]
+  end
+
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -39,6 +39,12 @@ gem 'factual-api'
 # use geocoder for visitor lat long
 gem 'geocoder'
 
+gem 'omniauth'
+gem 'devise_token_auth'
+# add angular
+gem 'bower-rails'
+gem 'active_model_serializers'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

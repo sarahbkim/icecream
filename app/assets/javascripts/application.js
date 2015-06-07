@@ -13,4 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require angular/angular.js
+//= require icecreamApp
 //= require_tree .
