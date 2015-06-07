@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20150604052125) do
     t.string   "street_address"
     t.string   "city"
     t.string   "state"
-    t.string   "zipcode"
+    t.integer  "zipcode"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.string   "factual_id"

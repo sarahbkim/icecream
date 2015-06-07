@@ -6,7 +6,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body ng-app="icecreamApp">
   <header class="navbar navbar-fixed-top navbar-inverse">
     <div class="container">
       <ul class="nav navbar-nav navbar-right">
@@ -28,6 +28,7 @@
       <div class="alert alert-<%= message_type %>"><%= message %></div>
     <% end %>
     <%= yield %>
+    {{2 + 1}}
   </div>
 
   <footer class="footer">
