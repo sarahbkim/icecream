@@ -14,5 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require angular/angular.js
+//= require angular-cookie/angular-cookie.js
+//= require ng-token-auth/dist/ng-token-auth.js
 //= require icecreamApp
 //= require_tree .

@@ -21,7 +21,7 @@ class Api::IcecreamShopsController < ApplicationController
   end
 
   def search
-    args_hash = {store_name: params[:store_name], location: params[:location]}
+    args_hash = { store_name: params[:store_name], location: params[:location] }
     result = GetFactualData.call(args_hash)
     if result.success?
       search_results = result.results_arr

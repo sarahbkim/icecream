@@ -12,19 +12,25 @@
   <header class="navbar navbar-fixed-top navbar-inverse">
     <div class="container">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#/home">Home</a></li>
-        <li><a href="#/about">About</a></li>
-        <li><a href="#/profile/{{user.id}}">My Profile</a></li>
-        <li><a href="#/signup">Sign up</a></li>
-        <li ng-show="!user.id"><a href="#/login">Log in</a></li>
-        <li ng-show="user.id"><a ng-click="signOut()">Log out</a></li>
-        <!-- <li><a href="#/logout/">Sign up</a></li> -->
+        <li><%= link_to 'Home', root_path %></li>
+        <li><%= link_to 'About', about_path %></li>
+        <% if logged_in? %>        
+          <li><%= link_to 'Sign out', logout_path, method: "delete" %></li>
+          <li><%= link_to 'My Profile', @user %></li>
+        <% else %>
+          <li><%= link_to 'Sign Up', signup_path %></li>
+          <li><%= link_to 'Log in', login_path %></li>
+        <% end %>
+        
       </ul>
     </div>
   </header>
 
   <div class="main container">
-    <ui-view></ui-view>
+    <% if flash %>
+      <div class="notice"><%= flash[:notice] %></p>
+    <% end %>
+    <%= yield %>
   </div>
 
   <footer class="footer">
@@ -33,82 +39,5 @@
     </div>
   </footer>
 
-  <script type="text/ng-template" id="/home.html">
-    <div class="page-header">
-      <h1>Home template</h1>
-    </div>
-  </script>
-
-  <script type="text/ng-template" id="/login.html">
-    <div class="page-header">
-      <h1>Log in to your profile</h1>
-    </div>
-    <form ng-submit="submitLogin(loginForm)" role="form" ng-init="loginForm = {}">
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email"
-               name="email"
-               id="email"
-               ng-model="loginForm.email"
-               required="required"
-               class="form-control">
-      </div>
-
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password"
-               name="password"
-               id="password"
-               ng-model="loginForm.password"
-               required="required"
-               class="form-control">
-      </div>
-
-      <button type="submit" class="btn btn-primary btn-lg">Sign in</button>
-    </form>
-
-  </script> 
-
-  <script type="text/ng-template" id="/signup.html">
-    <div class="page-header">
-      <h1>Sign up</h1>
-    </div>
-  </script>
-
-  <script type="text/ng-template" id="/about.html">
-    <div class="page-header">
-      <h1>This is the about page</h1>
-    </div>
-  </script>
-
-  <script type="text/ng-template" id="/profile.html">
-    <div class="page-header">
-      <h1>User profile page</h1>
-    </div>
-    <div class="row">
-      <h2>Your stats</h2>
-      <span>{{user.name}}</span>
-    </div>
-    <div class="row">
-      <h3>How much ice cream you ate...</h3>
-      <div>
-        <img src="#">
-        <span>Show some charts here -- user DC.js</span>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <h3>Your favorite stores</h3>
-        <div>
-          <ul>
-            <li>List stores here - use Angular!</li>
-          </ul>    
-        </div>
-      </div>
-      <div class="col-md-6">
-        <h3>Your Highest ratest stores / Other high ratest stores</h3>
-      </div>
-    </div>
-  </script>
 </body>
 </html>
