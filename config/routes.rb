@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     resources :icecream_shops, only: [:index, :create, :update, :destroy]
   end
 
-  match '/search', to: 'api/icecream_shops#search', via: [:get]
+  # match '/search', to: 'api/icecream_shops#search', via: [:get]
   
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

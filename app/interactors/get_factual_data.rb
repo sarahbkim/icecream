@@ -8,7 +8,7 @@ class GetFactualData
       context.store_name = "ice cream"
     end
     raw_data_arr = factual.table("places-us").search(context.store_name).filters("$and" => ["locality": {"$in": [context.location]}, "category_ids":{"$includes_any":[340, 347, 344]}]).rows
-
+    print context.store_name, context.location
     if raw_data_arr.present?
       context.results_arr = []
       raw_data_arr.each do |raw_data|
