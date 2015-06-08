@@ -4,6 +4,9 @@ class GetFactualData
 
   def call
     factual = Factual.new(FACTUAL_API_KEY, FACTUAL_API_TOKEN)
+    if context.store_name == ""
+      context.store_name = "ice cream"
+    end
     raw_data_arr = factual.table("places-us").search(context.store_name).filters("$and" => ["locality": {"$in": [context.location]}, "category_ids":{"$includes_any":[340, 347, 344]}]).rows
 
     if raw_data_arr.present?
@@ -22,7 +25,5 @@ class GetFactualData
     def createIcecreamShops(raw_data)
       IcecreamShop.create({name: raw_data['name'], street_address: raw_data['address'], city: raw_data['locality'], state: raw_data['region'], zipcode: raw_data['postcode'], factual_id: raw_data['factual_id']})
     end
-
-
 
 end

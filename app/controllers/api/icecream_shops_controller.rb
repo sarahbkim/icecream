@@ -2,9 +2,8 @@ class Api::IcecreamShopsController < ApplicationController
   #before_action :authenticate
 
   def index
-    @stores = IcecreamShop.all
-    render json: stores, status: 201
-    #@stores = self.search -- don't call the api right now
+    @stores = self.search
+    render json: @stores, status: 201
   end
 
   def new
@@ -15,17 +14,11 @@ class Api::IcecreamShopsController < ApplicationController
     @store = IcecreamShop.find(params[:id])
   end
   
-  def create
-    store = IcecreamShop.new(shop_params)
-    render json: store, status: 201
-  end
-
   def search
     args_hash = { store_name: params[:store_name], location: params[:location] }
     result = GetFactualData.call(args_hash)
     if result.success?
-      search_results = result.results_arr
-      render json: search_results, status: 201
+      return result.results_arr
     end
   end
 

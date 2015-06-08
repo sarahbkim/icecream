@@ -1,0 +1,35 @@
+<div class="row" ng-controller="MainCtrl">
+  <div class="center jumbotron">
+    <h1>Search for all the ice cream you want!</h1>
+  </div>
+  <div class="row">
+    <h2>Search for an icecream store</h2>
+      <form class="form" novalidate>
+        <div class="form-group">
+          <label>Store Name: </label>
+          <input class="form-control" placeholder="Find by name" type="text" ng-model="store_name" /></br>
+        </div>
+        <div class="form-group">
+          <label>Location: </label>
+          <input class="form-control" placeholder="City or Zipcode" type="text" ng-model="location_query" /></br>
+        </div>
+        <button type="submit" class="btn btn-default" ng-click="findStores(store_name, location_query)">Submit</button>
+      </form>
+  </div>
+  <div class="row">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <td>Shop Name</td>
+          <td>Address</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="store in data">
+          <td>{{ store.name }}</td>
+          <td>{{ store.street_address }} {{ store.city }}, {{ store.state }} {{ store.zipcode }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
