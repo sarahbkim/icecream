@@ -7,14 +7,15 @@ class GetFactualData
     if context.store_name == ""
       context.store_name = "ice cream"
     end
-    raw_data_arr = factual.table("places-us").search(context.store_name).filters("$and" => ["locality": {"$in": [context.location]}, "category_ids":{"$includes_any":[340, 347, 344]}]).rows
-    print context.store_name, context.location
+
+    if context.location == ""
+      raw_data_arr = factual.table("places-us").search(context.store_name).filters("category_ids":{"$includes_any":[340, 347, 344]}).rows
+    else
+      raw_data_arr = factual.table("places-us").search(context.store_name).filters("$and" => ["locality": {"$in": [context.location]}, "category_ids":{"$includes_any":[340, 347, 344]}]).rows
+    end
+
     if raw_data_arr.present?
-      context.results_arr = []
-      raw_data_arr.each do |raw_data|
-        shop = createIcecreamShops(raw_data)
-        context.results_arr.push(shop)
-      end
+      context.results_arr = processResults(raw_data_arr)
       context.status = :found
     else
       context.status = :not_found
@@ -24,6 +25,17 @@ class GetFactualData
   private
     def createIcecreamShops(raw_data)
       IcecreamShop.create({name: raw_data['name'], street_address: raw_data['address'], city: raw_data['locality'], state: raw_data['region'], zipcode: raw_data['postcode'], factual_id: raw_data['factual_id']})
+    end
+
+    def processResults(raw_data)
+      results_arr = []
+      
+      raw_data.each do |data|
+        shop = createIcecreamShops(data)
+        results_arr.push(shop)
+      end
+
+      return results_arr
     end
 
 end
