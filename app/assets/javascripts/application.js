@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require angular/angular.js
 //= require angular-resource/angular-resource.js
 //= require angular-cookie/angular-cookie.js
