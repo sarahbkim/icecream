@@ -26,7 +26,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="store in data">
+          <tr ng-repeat="store in data.icecream_shops">
             <td>{{ store.name }}</td>
             <td>{{ store.street_address }} {{ store.city }}, {{ store.state }} {{ store.zipcode }}</td>
           </tr>
@@ -44,4 +44,3 @@
     <%= link_to "Sign up now!", '#', class: "btn btn-lg btn-primary" %>
   </div>
 <% end %>
-
