@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150613185115) do
+ActiveRecord::Schema.define(version: 20150613190443) do
 
   create_table "check_ins", force: :cascade do |t|
     t.string   "user_id"
@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(version: 20150613185115) do
     t.datetime "updated_at",     null: false
     t.string   "factual_id"
   end
+
+  add_index "icecream_shops", ["factual_id"], name: "index_icecream_shops_on_factual_id", unique: true
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

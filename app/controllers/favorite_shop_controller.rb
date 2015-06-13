@@ -1,0 +1,2 @@
+class FavoriteShopController < ApplicationController
+end

@@ -1,0 +1,9 @@
+<div class="row">
+  <h1><%= @shop.name %></h1>
+  <div>
+    <%= @shop.street_address %><br>
+    <%= @shop.city %>, <%= @shop.state %> <%= @shop.zipcode %><br>
+    <%= link_to "Add to Favorites", add_favorite_shop %>
+    <%= link_to "Check in", check_in %>
+  </div>
+</div>

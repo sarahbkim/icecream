@@ -11,16 +11,21 @@ Rails.application.routes.draw do
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
-  
-  resources :users
+
+  resources :users do
+      resources :check_ins
+      resources :favorite_shops
+  end
   match '/signup', to: 'users#new', via: [:get, :post]
 
   namespace :api, defaults: {format: :json} do
     resources :icecream_shops, only: [:index, :create, :update, :destroy]
   end
 
+  resources :icecream_shop
+
   # match '/search', to: 'api/icecream_shops#search', via: [:get]
-  
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
