@@ -9,15 +9,16 @@ class Api::IcecreamShopsController < ApplicationController
   def new
     @store = IcecreamShop.new
   end
-  
+
   def show
     @store = IcecreamShop.find(params[:id])
   end
-  
+
   def search
     args_hash = { store_name: params[:store_name], location: params[:location] }
     result = GetFactualData.call(args_hash)
     if result.success?
+      print result.results_arr
       return result.results_arr
     end
   end

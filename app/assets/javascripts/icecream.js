@@ -12,6 +12,6 @@ angular.module('icecreamApp', ['ngResource'])
   }])
   .factory('iceCreamData', ['$resource', function($resource){
     return $resource('/api/icecream_shops/', {}, {
-      query: {method: 'GET', params: {}, isArray: true}
+      query: {method: 'GET', params: {}, isArray: false}
     });
   }]);

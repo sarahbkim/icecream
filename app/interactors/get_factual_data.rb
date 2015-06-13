@@ -21,21 +21,22 @@ class GetFactualData
       context.status = :not_found
     end
   end
-    
+
   private
-    def createIcecreamShops(raw_data)
-      IcecreamShop.create({name: raw_data['name'], street_address: raw_data['address'], city: raw_data['locality'], state: raw_data['region'], zipcode: raw_data['postcode'], factual_id: raw_data['factual_id']})
-    end
 
     def processResults(raw_data)
       results_arr = []
-      
+
       raw_data.each do |data|
         shop = createIcecreamShops(data)
         results_arr.push(shop)
       end
 
       return results_arr
+    end
+
+    def createIcecreamShops(raw_data)
+      IcecreamShop.create({name: raw_data['name'], street_address: raw_data['address'], city: raw_data['locality'], state: raw_data['region'], zipcode: raw_data['postcode'], factual_id: raw_data['factual_id']})
     end
 
 end
