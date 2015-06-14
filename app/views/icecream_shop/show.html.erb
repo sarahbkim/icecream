@@ -3,7 +3,11 @@
   <div>
     <%= @shop.street_address %><br>
     <%= @shop.city %>, <%= @shop.state %> <%= @shop.zipcode %><br>
-    <%= link_to "Add to Favorites", add_favorite_shop %>
-    <%= link_to "Check in", check_in %>
+    <%= link_to "Check In", check_in_icecream_shop_path(@shop), method: :put %><br>
+    <% if current_user.favorite_shops.find_by(shop_id: @shop.id) %>
+      <p>You've favorited this shop</p> (<%= link_to "Remove from favorites", favorite_icecream_shop_path(@shop, type: "unfavorite"), method: :put %>)
+    <% else %>
+      <%= link_to "Add to Favorites", favorite_icecream_shop_path(@shop, type: "favorite"), method: :put %>
+    <% end %>
   </div>
 </div>
