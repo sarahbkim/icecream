@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
-  has_many :check_ins
   has_many :favorite_shops
+  has_many :check_ins
+
+  has_many :checkins, through: :check_ins, source: :icecream_shop
+  has_many :favorites, through: :favorite_shops, source: :icecream_shop
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   before_save { self.email = email.downcase }

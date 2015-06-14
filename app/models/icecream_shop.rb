@@ -1,6 +1,9 @@
 class IcecreamShop < ActiveRecord::Base
-  has_many :check_ins, dependent: :destroy
-  has_many :favorite_shop, dependent: :destroy
+  has_many :favorite_shops
+  has_many :check_ins
+
+  has_many :checkin_by, through: :check_ins, source: :user
+  has_many :favorited_by, through: :favorite_shops, source: :user
 
   VALID_ZIPCODE_REGEX = /^\d{5}(-\d{4})?$/
   validates :id, uniqueness: true

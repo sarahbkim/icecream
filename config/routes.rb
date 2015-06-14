@@ -12,17 +12,19 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
 
-  resources :users do
-      resources :check_ins
-      resources :favorite_shops
+  resources :users
+
+  resources :icecream_shop do
+    put :favorite, on: :member
+    put :check_in, on: :member
   end
+
   match '/signup', to: 'users#new', via: [:get, :post]
 
   namespace :api, defaults: {format: :json} do
     resources :icecream_shops, only: [:index, :create, :update, :destroy]
   end
 
-  resources :icecream_shop
 
   # match '/search', to: 'api/icecream_shops#search', via: [:get]
 

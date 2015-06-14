@@ -11,14 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150613190443) do
+ActiveRecord::Schema.define(version: 20150614051746) do
 
   create_table "check_ins", force: :cascade do |t|
     t.string   "user_id"
     t.string   "shop_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "factual_id"
   end
 
   create_table "favorite_shops", force: :cascade do |t|
@@ -27,8 +26,9 @@ ActiveRecord::Schema.define(version: 20150613190443) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "factual_id"
   end
+
+  add_index "favorite_shops", ["shop_id", "user_id"], name: "index_favorite_shops_on_shop_id_and_user_id", unique: true
 
   create_table "icecream_shops", force: :cascade do |t|
     t.string   "name"
