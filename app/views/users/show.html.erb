@@ -15,7 +15,7 @@
     <h3>Your favorite stores</h3>
     <div>
       <% @user.favorite_shops.each do |shop| %>
-        <li>shop.name</li>
+        <li><%= IcecreamShop.find(shop.shop_id).name %></li>
       <% end %>
     </div>
   </div>
@@ -23,7 +23,7 @@
     <h3>Your Check Ins</h3>
     <ul>
       <% @user.check_ins.each do |check_in| %>
-        <li>check_in</li>
+        <li><%= IcecreamShop.find(check_in.shop_id).name %> on <%= check_in.created_at.to_formatted_s(:short) %></li>
       <% end %>
     </ul>
   </div>

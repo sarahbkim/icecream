@@ -15,12 +15,20 @@ class Api::IcecreamShopsController < ApplicationController
   end
 
   def search
-    args_hash = { store_name: params[:store_name], location: params[:location] }
-    result = GetFactualData.call(args_hash)
-    if result.success?
-      print result.results_arr
-      return result.results_arr
+    # search in app's database first
+    results = IcecreamShop.where('city like :location_q or name like :name_q', location_q: params[:location], name_q: params[:store_name] ).to_a
+    
+    # if no results, call in Factual api
+    if results.empty?
+      args_hash = { store_name: params[:store_name], location: params[:location] }
+      results = GetFactualData.call(args_hash)
+      if result.success?
+        return result.results_arr
+      end
+    else
+      return results
     end
+  
   end
 
   private
