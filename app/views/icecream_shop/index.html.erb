@@ -9,5 +9,7 @@
     <% else %>
       <%= link_to "Add to Favorites", favorite_icecream_shop_path(@shop, type: "favorite"), method: :put %>
     <% end %>
+    <br>
+    <%= link_to "Back", url_for(:back) %>
   </div>
 </div>
