@@ -25,12 +25,9 @@ class GetFactualData
   private
 
     def processResults(raw_data)
-      results_arr = []
       raw_data.each do |data|
         shop = createIcecreamShops(data)
-        results_arr.push(shop)
       end
-      return results_arr
     end
 
     def createIcecreamShops(raw_data)

@@ -5,8 +5,9 @@ angular.module('icecreamApp', ['ngResource'])
       var store_name = store_name || "",
           location_query = location_query || "";
 
-      $scope.data = iceCreamData.query({store_name: store_name, location: location_query}, function(data){
-        $scope.data = data;
+      $scope.data = iceCreamData.query({store_name: store_name, location: location_query});
+      $scope.data.$promise.then(function(d){
+        return d;
       });
     };
   }])
