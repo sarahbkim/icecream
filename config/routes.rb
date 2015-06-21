@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     resources :icecream_shops, only: [:index, :create, :update, :destroy]
+    resources :check_ins, only: [:index, :create, :update, :destroy]
   end
 
 

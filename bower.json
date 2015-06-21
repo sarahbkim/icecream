@@ -5,7 +5,10 @@
       "angular": "1.4",
       "angular-ui-router": "0.2",
       "ng-token-auth": "0.0.25",
-      "angular-resource": "1.4"
+      "angular-resource": "1.4",
+      "d3": "3.5.5",
+      "nvd3": "1.8.1",
+      "angularjs-nvd3-directives": "0.0.7"
     }
   },
   "vendor": {
@@ -14,7 +17,10 @@
       "angular": "1.4",
       "angular-ui-router": "0.2",
       "ng-token-auth": "0.0.25",
-      "angular-resource": "1.4"
+      "angular-resource": "1.4",
+      "d3": "3.5.5",
+      "nvd3": "1.8.1",
+      "angularjs-nvd3-directives": "0.0.7"
     }
   }
 }
