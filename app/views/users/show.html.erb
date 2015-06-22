@@ -1,30 +1,32 @@
-<div class="row">
-  <h2>Your stats</h2>
-  <span><%= @user.name %></span>
-  <span><%= @user.email %></span>
-</div>
-<div class="row">
-  <h3>How much ice cream you ate...</h3>
-  <div>
-    <img src="#">
-    <span>Show some charts here -- user DC.js</span>
+<% if logged_in? %>
+  <div class="row">
+    <h2>Your stats</h2>
+    <span><%= @user.name %></span>
+    <span><%= @user.email %></span>
   </div>
-</div>
-<div class="row">
-  <div class="col-md-6">
-    <h3>Your favorite stores</h3>
+  <div class="row" ng-controller="StatsCtrl">
+    <h3>How much ice cream you ate...</h3>
     <div>
-      <% @user.favorite_shops.each do |shop| %>
-        <li><%= IcecreamShop.find(shop.shop_id).name %></li>
-      <% end %>
+      <img src="#">
+      <span>Show some charts here -- user DC.js</span>
     </div>
   </div>
-  <div class="col-md-6">
-    <h3>Your Check Ins</h3>
-    <ul>
-      <% @user.check_ins.each do |check_in| %>
-        <li><%= IcecreamShop.find(check_in.shop_id).name %> on <%= check_in.created_at.to_formatted_s(:short) %></li>
-      <% end %>
-    </ul>
+  <div class="row">
+    <div class="col-md-6">
+      <h3>Your favorite stores</h3>
+      <div>
+        <% @user.favorite_shops.each do |shop| %>
+          <li><%= IcecreamShop.find(shop.shop_id).name %></li>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h3>Your Check Ins</h3>
+      <ul>
+        <% @user.check_ins.each do |check_in| %>
+          <li><%= IcecreamShop.find(check_in.shop_id).name %> on <%= check_in.created_at.to_formatted_s(:short) %></li>
+        <% end %>
+      </ul>
+    </div>
   </div>
-</div>
+<% end %>
