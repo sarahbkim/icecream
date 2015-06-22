@@ -14,8 +14,7 @@
 //= require jquery_ujs
 //= require angular/angular.js
 //= require angular-resource/angular-resource.js
-//= require angular-cookie/angular-cookie.js
 //= require d3/d3.min.js
-//= require nvd3/build/nv.d3.min.js
+//= require nvd3/nv.d3.min.js
 //= require angularjs-nvd3-directives/dist/angularjs-nvd3-directives.js
 //= require_tree .

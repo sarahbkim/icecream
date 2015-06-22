@@ -1,9 +1,10 @@
 'use strict';
 
-console.log("this is the icecream.js page");
-var app = angular.module('icecreamApp', ['ngResource']);
+var app = angular.module('icecreamApp', [ 'ngResource', 'nvd3ChartDirectives', 'services', 'controllers']),
+    services = angular.module('services', ['ngResource']),
+    controllers = angular.module('controllers', []);
 
-app.factory('iceCreamData', ['$resource', function($resource){
+services.factory('iceCreamData', ['$resource', function($resource){
 
     return $resource('/api/icecream_shops/', {}, {
       query: {method: 'GET', params: {}, isArray: false}
@@ -13,12 +14,29 @@ app.factory('iceCreamData', ['$resource', function($resource){
   .factory('checkInsData', ['$resource', function($resource){
 
     return $resource('/api/check_ins/', {}, {
-      query: {method: 'GET', params: {}, isArray: false}
+      query: {
+        method: 'GET',
+        params: {},
+        isArray: false,
+        transformResponse: function(data, headers){
+          var jsonData = JSON.parse(data),
+              nvd3Data = {},
+              counts = [];
 
-    })
-  }])
-  .controller('MainCtrl', ['$scope', 'iceCreamData', function($scope, iceCreamData){
-    console.log('mainctrl');
+          jsonData.check_ins.forEach(function(d){
+            counts.push([d.date, d.count]);
+          });
+
+          nvd3Data['counts'] = counts;
+
+          return nvd3Data;
+        }
+      }
+    });
+
+  }]);
+
+controllers.controller('MainCtrl', ['$scope', 'iceCreamData', function($scope, iceCreamData){
 
     $scope.findStores = function(store_name, location_query) {
       var store_name = store_name || "",
@@ -32,10 +50,25 @@ app.factory('iceCreamData', ['$resource', function($resource){
   }])
   .controller('StatsCtrl', ['$scope', 'checkInsData', function($scope, checkInsData){
 
-    $scope.checkIns = checkInsData.query();
+    $scope.checkIns = checkInsData.query({});
     $scope.checkIns.$promise.then(function(d){
-      console.log(d.check_ins);
-      return d.check_ins;
+      $scope.checkInCounts = [{"key": "Check Ins", "values": $scope.checkIns.counts}];
+
+      $scope.test = [{"key": "Test", "values": [[1, 2], [2, 3], [3, 10]]}];
+
     });
+
+    $scope.xFunction = function() {
+      return function(d, i){
+        return i;
+      }
+    };
+
+    $scope.xAxisTickFormat = function(d){
+       if(typeof $scope.checkIns.counts[d] !== 'undefined') {
+          return $scope.checkIns.counts[d][0];
+       }
+
+	 };
 
   }]);

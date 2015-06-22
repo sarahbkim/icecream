@@ -6,9 +6,17 @@
   </div>
   <div class="row" ng-controller="StatsCtrl">
     <h3>How much ice cream you ate...</h3>
-    <div>
-      <img src="#">
-      <span>Show some charts here -- user DC.js</span>
+    <div class="row chart">
+      <nvd3-line-chart
+        data="checkInCounts"
+        showXAxis="true"
+        showYAxis="true"
+        tooltips="true"
+        margin="{left:50,top:50,bottom:50,right:50}"
+        x="xFunction()"
+        xAxisTickFormat="xAxisTickFormat"
+        interactive="true"><svg></svg>
+      </nvd3-line-chart>
     </div>
   </div>
   <div class="row">
