@@ -5,7 +5,7 @@
     <span><%= @user.email %></span>
   </div>
   <div class="row" ng-controller="StatsCtrl">
-    <h3>How much ice cream you ate...</h3>
+    <h3>Your check-in history</h3>
     <div class="row chart">
       <nvd3-line-chart
         data="checkInCounts"
@@ -18,23 +18,31 @@
         interactive="true"><svg></svg>
       </nvd3-line-chart>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6">
-      <h3>Your favorite stores</h3>
-      <div>
-        <% @user.favorite_shops.each do |shop| %>
-          <li><%= IcecreamShop.find(shop.shop_id).name %></li>
-        <% end %>
+    <div class="row">
+      <div class="col-md-5 col-md-offset-1">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <td>Shop Name</td>
+              <td>Count of Check Ins</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="x in checkInsByStore">
+                <td>{{ x.shop }}</td>
+                <td>{{ x.count }}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </div>
-    <div class="col-md-6">
-      <h3>Your Check Ins</h3>
-      <ul>
-        <% @user.check_ins.each do |check_in| %>
-          <li><%= IcecreamShop.find(check_in.shop_id).name %> on <%= check_in.created_at.to_formatted_s(:short) %></li>
-        <% end %>
-      </ul>
+      <div class="col-md-5 col-md-offset-1">
+        <h3>Your favorite stores</h3>
+        <div>
+          <% @user.favorite_shops.each do |shop| %>
+            <li><%= IcecreamShop.find(shop.shop_id).name %></li>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 <% end %>

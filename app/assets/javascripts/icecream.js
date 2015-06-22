@@ -21,13 +21,16 @@ services.factory('iceCreamData', ['$resource', function($resource){
         transformResponse: function(data, headers){
           var jsonData = JSON.parse(data),
               nvd3Data = {},
-              counts = [];
+              by_date = [];
 
-          jsonData.check_ins.forEach(function(d){
-            counts.push([d.date, d.count]);
+          // rework data to array of arrays for nvd3 format
+          jsonData.by_date.forEach(function(d){
+            by_date.push([d.date, d.count]);
           });
 
-          nvd3Data['counts'] = counts;
+
+          nvd3Data['by_date'] = by_date;
+          nvd3Data['by_shop'] = jsonData.by_shop;
 
           return nvd3Data;
         }
@@ -52,10 +55,8 @@ controllers.controller('MainCtrl', ['$scope', 'iceCreamData', function($scope, i
 
     $scope.checkIns = checkInsData.query({});
     $scope.checkIns.$promise.then(function(d){
-      $scope.checkInCounts = [{"key": "Check Ins", "values": $scope.checkIns.counts}];
-
-      $scope.test = [{"key": "Test", "values": [[1, 2], [2, 3], [3, 10]]}];
-
+      $scope.checkInCounts = [{"key": "Check Ins", "values": $scope.checkIns.by_date}];
+      $scope.checkInsByStore = $scope.checkIns.by_shop;
     });
 
     $scope.xFunction = function() {
@@ -65,8 +66,8 @@ controllers.controller('MainCtrl', ['$scope', 'iceCreamData', function($scope, i
     };
 
     $scope.xAxisTickFormat = function(d){
-       if(typeof $scope.checkIns.counts[d] !== 'undefined') {
-          return $scope.checkIns.counts[d][0];
+       if(typeof $scope.checkIns.by_date[d] !== 'undefined') {
+          return $scope.checkIns.by_date[d][0];
        }
 
 	 };
