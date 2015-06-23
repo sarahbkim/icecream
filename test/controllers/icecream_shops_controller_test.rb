@@ -6,17 +6,22 @@ class Api::IcecreamShopsControllerTest < ActionController::TestCase
     @invalid_params = {name: 'test_name', street_address: 'test_street_address', city: 12, state: 'test_state', zipcode: 'xxx', factual_id: nil}
   end
 
-  test "should search factual API with valid args and update my db" do 
-    get :search, store_name: "", location: "Berkeley"
+  test "API's index shold return response valid args" do 
+    get :index, store_name: "", location: "Berkeley"
     assert_response :success
 
-    assert_difference('IcecreamShop.count') do
-      get :search, store_name: "Smitten", location: "Oakland"
-      assert_response :success
-    end
+    get  :index, store_name: "Coldstone", location: ""
+    assert_response :success
 
+    get :index, store_name: "Coldstone", location: "San Francisco"
+    assert_response :success
   end
-  
-end
 
-# [{"id":1,"name":"Smitten Ice Cream","street_address":"5800 College Ave","city":"Oakland","state":"CA","zipcode":94618,"created_at":"2015-06-07T22:13:16.732Z","updated_at":"2015-06-07T22:13:16.732Z","factual_id":"d45e5b44-d751-4040-b921-2bb543eac1c0"}]
+  test "search method should return an array of results" do
+    s = Api::IcecreamShopsController.new
+    s.params = {store_name: "", location: "Oakland"}
+    results = s.search
+    assert_not_empty results
+  end
+
+end

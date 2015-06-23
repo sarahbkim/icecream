@@ -1,4 +1,5 @@
 class IcecreamShopController < ApplicationController
+  
   def index
     @shop = IcecreamShop.find(params[:id])
   end
