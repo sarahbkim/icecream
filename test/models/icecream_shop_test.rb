@@ -25,7 +25,7 @@ class IcecreamShopTest < ActiveSupport::TestCase
   end
 
   test "zipcode should be in correct format" do
-    valid_zips = ["94612", "91913", "02105"]
+    valid_zips = ['94612', '91913', '02105']
     valid_zips.each do |zipcode|
       @shop.zipcode = zipcode
       assert @shop.valid?, "#{zipcode} should be in the right format"

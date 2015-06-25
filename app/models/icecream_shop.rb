@@ -5,7 +5,7 @@ class IcecreamShop < ActiveRecord::Base
   has_many :checkin_by, through: :check_ins, source: :user
   has_many :favorited_by, through: :favorite_shops, source: :user
 
-  VALID_ZIPCODE_REGEX = /^['0-9']{5}/
+  VALID_ZIPCODE_REGEX = /[0-9]{5}/
   validates :id, uniqueness: true
   validates :factual_id, uniqueness: true, presence: true
   validates :name, presence: true
