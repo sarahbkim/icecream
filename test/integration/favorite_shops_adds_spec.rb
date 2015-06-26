@@ -27,8 +27,11 @@ class FavoriteShopsTest < ActionDispatch::IntegrationTest
 	end
 
 	test 'shop detail page should not have check_in link for logged out users' do
+		#navigate to an icecreamshop detail page
 		get icecream_shop_path(@shop, @shop.id)
 		assert_template 'icecream_shop/show'
+
+		# link should be be shown
 		assert_select 'div #icecreamShopDetail a', {count: 0, text: 'Add to Favorites'}
 	end
 end
