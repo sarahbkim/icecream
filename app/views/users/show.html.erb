@@ -37,11 +37,23 @@
       </div>
       <div class="col-md-5 col-md-offset-1">
         <h3>Your favorite stores</h3>
-        <div>
-          <% @user.favorite_shops.each do |shop| %>
-            <li><%= IcecreamShop.find(shop.shop_id).name %></li>
-          <% end %>
-        </div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <td>Shop Name</td>
+              <td>My rating</td>
+            </tr>
+          </thead>  
+          <tbody>
+            <% @user.favorite_shops.each do |shop| %>
+              <tr>
+                <td><%= IcecreamShop.find(shop.shop_id).name %></td>
+                <td><%= IcecreamShop.find(shop.shop_id).city %></td>
+                <td><%= shop.rating %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

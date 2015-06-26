@@ -3,7 +3,7 @@ require 'test_helper'
 class IcecreamShopTest < ActiveSupport::TestCase
   def setup
     @shop = IcecreamShop.new(name: "Test 1", street_address: "Test Address", 
-        city: "Berkeley", state: "CA", zipcode: '94612', factual_id: '182305631048109dajfk')
+        city: "Berkeley", state: "CA", zipcode: '94612', factual_id: '182305631048109dajfk', avg_rating: 3.7)
   end
 
   def teardown
@@ -39,4 +39,16 @@ class IcecreamShopTest < ActiveSupport::TestCase
       assert_not @shop.valid? "#{zip} should be in the right format"
     end
   end
+
+  test "avg rating should be in the correct range" do
+    @shop.avg_rating = rand(-10..0)
+    assert_not @shop.valid?
+
+    @shop.avg_rating = rand(1..5)
+    assert @shop.valid?
+
+    @shop.avg_rating = rand(5.1..10)
+    assert_not @shop.valid?
+  end
+
 end

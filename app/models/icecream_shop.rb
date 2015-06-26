@@ -13,4 +13,5 @@ class IcecreamShop < ActiveRecord::Base
   validates :city, presence: true
   validates :state, presence: true
   validates :zipcode, presence: true, format: { with: VALID_ZIPCODE_REGEX, multiline: true }
+  validates_inclusion_of :avg_rating, :in => 1.0 .. 5.0
 end

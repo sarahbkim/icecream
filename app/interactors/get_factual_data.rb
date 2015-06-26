@@ -26,11 +26,11 @@ class GetFactualData
 
     def processResults(raw_data)
       raw_data.each do |data|
-        shop = createIcecreamShops(data)
+        shop = createIcecreamShop(data)
       end
     end
 
-    def createIcecreamShops(raw_data)
+    def createIcecreamShop(raw_data)
       IcecreamShop.create({name: raw_data['name'], street_address: raw_data['address'], city: raw_data['locality'], state: raw_data['region'], zipcode: raw_data['postcode'], factual_id: raw_data['factual_id']})
     end
 

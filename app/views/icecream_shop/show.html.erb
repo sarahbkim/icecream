@@ -1,5 +1,8 @@
 <div class="row" id="icecreamShopDetail">
   <h1><%= @shop.name %></h1>
+  <% if @avg_rating > 0 %>
+    <span><%= @avg_rating %></span>
+  <% end %>
   <div>
     <%= @shop.street_address %><br>
     <%= @shop.city %>, <%= @shop.state %> <%= @shop.zipcode %><br>

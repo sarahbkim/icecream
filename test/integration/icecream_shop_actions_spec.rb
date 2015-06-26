@@ -74,4 +74,3 @@ class IcecreamShopTest < ActionDispatch::IntegrationTest
 	end
 
 end
-

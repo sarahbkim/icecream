@@ -1,11 +1,15 @@
 class IcecreamShopController < ApplicationController
-  
+  include IcecreamShopHelper
+
   def index
     @shops = IcecreamShop.all
   end
 
   def show
     @shop = IcecreamShop.find(params[:id])
+    @favorites = FavoriteShop.where(shop_id: @shop.id).pluck(:rating).compact
+    @avg_rating = mean(@favorites)
+    print @avg_rating
   end
 
   def favorite
