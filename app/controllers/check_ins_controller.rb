@@ -4,9 +4,6 @@ class CheckInsController < ApplicationController
     @check_ins = CheckIn.where(user_id: @user.id).to_a
   end
 
-  def show
-  end
-
   def new
     @check_in = CheckIn.new
   end
@@ -14,10 +11,6 @@ class CheckInsController < ApplicationController
   def create
     @user = current_user
     @check_in = CheckIn.new(check_in_params)
-  end
-
-  def check_in
-
   end
 
   private

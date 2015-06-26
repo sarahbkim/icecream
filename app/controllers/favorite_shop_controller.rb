@@ -11,5 +11,4 @@ class FavoriteShopController < ApplicationController
     def favorite_shop_params
       params.require(:favorite_shop).permit(:rating, :shop_id, :user_id, :factual_id)
     end
-
 end

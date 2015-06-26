@@ -1,5 +1,10 @@
 class IcecreamShopController < ApplicationController
+  
   def index
+    @shops = IcecreamShop.all
+  end
+
+  def show
     @shop = IcecreamShop.find(params[:id])
   end
 
@@ -9,13 +14,13 @@ class IcecreamShopController < ApplicationController
     if type == "favorite"
       @fav = FavoriteShop.create({user_id: current_user.id, shop_id: @shop.id})
       current_user.favorite_shops << @fav
-      redirect_to :back, notice: "You favorited #{@shop.name}"
+      redirect_to @shop, notice: "You favorited #{@shop.name}"
     elsif type == "unfavorite"
       @unfav = FavoriteShop.find_by(user_id: current_user.id, shop_id: @shop.id)
       current_user.favorite_shops.delete(@unfav)
-      redirect_to :back, notice: "Unfavorited #{@shop.name}"
+      redirect_to @shop, notice: "Unfavorited #{@shop.name}"
     else
-      redirect_to :back, notice: "Nothing happened"
+      redirect_to @shop, notice: "Nothing happened"
     end
   end
 
@@ -23,7 +28,7 @@ class IcecreamShopController < ApplicationController
     @shop = IcecreamShop.find(params[:id])
     @check = CheckIn.create({user_id: current_user.id, shop_id: @shop.id})
     current_user.check_ins << @check
-    redirect_to :back, notice: "You checked in at #{@shop.name}"
+    redirect_to @shop, notice: "You checked in at #{@shop.name}"
   end
 
 end
