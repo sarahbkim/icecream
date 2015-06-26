@@ -60,7 +60,17 @@ class IcecreamShopTest < ActionDispatch::IntegrationTest
 		#remove shop from favorites
 		put favorite_icecream_shop_path(@shop, type: 'unfavorite')
 		assert_nil @current_user.favorite_shops.find_by(shop_id: @shop.id)
+	end
 
+	test 'should be able to check into a store' do
+		#navigate to an icecreamshop detail page
+		get icecream_shop_path(@shop, @shop.id)
+		assert_template 'icecream_shop/show'
+
+		#check in to a store
+		put check_in_icecream_shop_path(@shop)
+		@created_date = Time.now
+		assert_not_nil @current_user.check_ins.where(shop_id: @shop.id, created_date: @created_at)
 	end
 
 end
